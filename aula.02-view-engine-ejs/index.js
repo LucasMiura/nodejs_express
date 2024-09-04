@@ -3,9 +3,13 @@ const express = require("express"); // CommonJS Modules
 // Criando uma instância do Express
 const app = express();
 
+// Definindo o EJS como renderizador de páginas
+app.set("view engine", "ejs");
+
 // CRIANDO A ROTA PRINCIPAL
 app.get("/", (req, res) => {
-  res.send("<h1>Hello world! <br>Bem-vindo!<h1><br><hr>");
+  // Será renderizada a página index.ejs que está na pasta 'views'
+  res.render("index");
 });
 
 // ROTA PERFIL
@@ -19,7 +23,7 @@ app.get("/perfil/:nome?", (req, res) => {
     //Se o nome == true
     res.send(`Olá, ${nome}! Seja bem-vindo!`);
   } else {
-    res.send(`<h2>Faça login para acessar o seu perfil</h2>`);
+    res.render("perfil");
   }
 });
 
@@ -29,18 +33,31 @@ app.get("/videos/:playlist?/:video?", (req, res) => {
   const playlist = req.params.playlist;
   const video = req.params.video;
   // Verificando se playlist == true e video == undefined
-  if (playlist && video == undefined){
-    res.send(`<h2>Você está na playlist de ${playlist}.</h2>`)
+  if (playlist && video == undefined) {
+    res.send(`<h2>Você está na playlist de ${playlist}.</h2>`);
   }
   // Verificando se os dois parâmetros são = true
-  if (playlist && video){
+  if (playlist && video) {
     res.send(`<h2>Você está na playlist de ${playlist}</h2><br>
-      Reproduzindo o vídeo ${video}...`)
+      Reproduzindo o vídeo ${video}...`);
 
-  // Se não for informado nenhum parâmetro
+    // Se não for informado nenhum parâmetro
   } else {
-    res.send("<h1>Página de vídeos</h1>");
+    res.render("videos");
   }
+});
+
+// ROTA DE PRODUTOS
+app.get("/produtos/:produto?", (req, res) => {
+  const listaProdutos = ["Computador", "Celular", "Tablet", "Notebook"];
+  const produto = req.params.produto;
+  res.render("produtos", {
+    // Enviando a variável para a página
+    // Será chamado na página (primeira variável)
+    produto: produto, // Variável que está na index (segunda variável)
+    listaProdutos : listaProdutos
+    // Na página produtos.ejs haverá uma testagem de condição
+  });
 });
 
 // Iniciando o servidor na porta 8080
