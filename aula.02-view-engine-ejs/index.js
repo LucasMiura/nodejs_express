@@ -44,7 +44,6 @@ app.get("/videos/:playlist?/:video?", (req, res) => {
     // Se não for informado nenhum parâmetro
   } else {
     res.render("videos");
-    
   }
 });
 
@@ -56,16 +55,32 @@ app.get("/produtos/:produto?", (req, res) => {
     // Enviando a variável para a página
     // Será chamado na página (primeira variável)
     produto: produto, // Variável que está na index (segunda variável)
-    listaProdutos : listaProdutos
+    listaProdutos: listaProdutos,
     // Na página produtos.ejs haverá uma testagem de condição
   });
 });
 
+// ROTA PEDIDOS
+app.get("/pedidos", (req, res) => {
+  // ARRAY DE OBJETOS COM OS PEDIDOS
+  const pedidos = [
+    { produto: "Celular", valor: 3000 },
+    { produto: "Computador", valor: 4000 },
+    { produto: "Tablet", valor: 2000 },
+    { produto: "Notebook", valor: 3800 },
+  ];
+  res.render("pedidos", {
+    // Enviando o array de objetos para a página
+    pedidos : pedidos
+  });
+});
+
 // Iniciando o servidor na porta 8080
-app.listen(8080, (error) => {
+const port = 8080;
+app.listen(port, (error) => {
   if (error) {
     console.log(`Ocorreu um erro: ${error}`);
   } else {
-    console.log("Servidor iniciado com sucesso!");
+    console.log(`Servidor iniciado com sucesso em: http://localhost:${port}`);
   }
 });
