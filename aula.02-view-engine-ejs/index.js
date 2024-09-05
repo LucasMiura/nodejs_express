@@ -44,6 +44,7 @@ app.get("/videos/:playlist?/:video?", (req, res) => {
     // Se não for informado nenhum parâmetro
   } else {
     res.render("videos");
+    
   }
 });
 
