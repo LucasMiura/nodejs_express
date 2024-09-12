@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil</title>
+  </head>
+
+  <style>
+    .fotoperfil {
+      background-color: #a5a5a5;
+      width: 150px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .nomeperfil {
+      width: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+  </style>
+
+  <body>
+    <% if(!nome){ %>
+    <h1>Entre em seu perfil</h1>
+    <hr />
+    <h3>Faça o login para acessar seus dados.</h3>
+    <hr />
+
+    <% } else { %>
+    <h1>Seja Bem-vindo <%= nome %></h1>
+    <hr />
+    <br />
+    <div class="fotoperfil">
+      Foto de perfil de <br />
+      <%= nome %>
+    </div>
+    <div class="nomeperfil"><b><%= nome %></b></div>
+    <% } %>
+  </body>
+</html>
