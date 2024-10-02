@@ -2,21 +2,41 @@
 <%- include ('partials/header.ejs') %>
 
 <style>
-    .fotoperfil{
-        background-color: gray;
-        width: 150px;
-        height: 150px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .fotoperfil {
+      background-color: #a5a5a5;
+      width: 150px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .nomeperfil {
+      width: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
 </style>
 
-    <h1>Esta é a página de perfil!</h1>
-    <hr>
-    <h3>Faça o login</h3>
-    <div class="fotoperfil">FOTO PERFIL</div>
-    <p>Isso é tudo pessoal</p>
+<% if(!nome){ %>
+    <h1>Entre em seu perfil</h1>
+    <hr />
+    <h3>Faça o login para acessar seus dados.</h3>
+    <hr />
+
+<% } else { %>
+    <h1>Seja Bem-vindo <%= nome %></h1>
+    <hr />
+    <br />
+    <div class="fotoperfil">
+      Foto de perfil de <br />
+      <%= nome %>
+    </div>
+    <div class="nomeperfil"><b><%= nome %></b></div>
+<% } %>
 
 <%- include ('partials/footer.ejs') %>

@@ -21,33 +21,21 @@ app.get("/", (req, res) => {
 app.get("/perfil/:nome?", (req, res) => {
   // Coletando o parâmetro e guardando na variável
   const nome = req.params.nome;
-  // Verificando se o parâmetro nome existe
-  if (nome) {
-    //Se o nome == true
-    res.send(`Olá, ${nome}! Seja bem-vindo!`);
-  } else {
-    res.render("perfil");
-  }
+  res.render("perfil", {
+    nome: nome,
+  });
 });
+
 
 // ROTA DE VÍDEOS
 // :playlist? e :video? - parâmetros opcionais
 app.get("/videos/:playlist?/:video?", (req, res) => {
   const playlist = req.params.playlist;
   const video = req.params.video;
-  // Verificando se playlist == true e video == undefined
-  if (playlist && video == undefined) {
-    res.send(`<h2>Você está na playlist de ${playlist}.</h2>`);
-  }
-  // Verificando se os dois parâmetros são = true
-  if (playlist && video) {
-    res.send(`<h2>Você está na playlist de ${playlist}</h2><br>
-      Reproduzindo o vídeo ${video}...`);
-
-    // Se não for informado nenhum parâmetro
-  } else {
-    res.render("videos");
-  }
+  res.render("videos", {
+    playlist: playlist,
+    video: video,
+  });
 });
 
 // ROTA DE PRODUTOS
