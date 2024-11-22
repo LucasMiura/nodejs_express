@@ -1,0 +1,20 @@
+.bg-site{
+    background-image: url("/imgs/background.jpg");
+    background-attachment: fixed;
+}
+
+
+.bg{
+    background-image: url("/imgs/background-filmes.webp");
+}
+
+.glass {
+    background: transparent;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    border-radius: 30px;
+}
+
+.card{
+    background-color: #f0f0f0;
+}
